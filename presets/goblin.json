@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "id": "goblin",
+  "name": "Goblin Trickster",
+  "description": "A nimble, bright voice with a restrained nasal color.",
+  "tags": ["fantasy", "high", "raspy"],
+  "effects": {
+    "pitch_semitones": 3.5,
+    "formant_semitones": 0.5,
+    "high_pass_hz": 130.0,
+    "low_pass_hz": 9500.0,
+    "body_hz": 300.0,
+    "body_db": -2.0,
+    "presence_hz": 1600.0,
+    "presence_db": 2.0,
+    "drive": 0.05,
+    "compression": 0.25,
+    "breath": 0.0,
+    "modulation_hz": 30.0,
+    "modulation_mix": 0.0,
+    "echo_mix": 0.0,
+    "echo_delay_ms": 90.0,
+    "gain_db": 1.5
+  }
+}

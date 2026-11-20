@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "id": "orc",
+  "name": "Orc Warrior",
+  "description": "A low, chesty voice with a rough edge.",
+  "tags": ["fantasy", "deep", "rough"],
+  "effects": {
+    "pitch_semitones": -4.0,
+    "formant_semitones": -1.5,
+    "high_pass_hz": 55.0,
+    "low_pass_hz": 6000.0,
+    "body_hz": 190.0,
+    "body_db": 3.0,
+    "presence_hz": 2100.0,
+    "presence_db": -1.5,
+    "drive": 0.2,
+    "compression": 0.35,
+    "breath": 0.0,
+    "modulation_hz": 30.0,
+    "modulation_mix": 0.0,
+    "echo_mix": 0.0,
+    "echo_delay_ms": 90.0,
+    "gain_db": 2.0
+  }
+}

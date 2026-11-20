@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "id": "dragon",
+  "name": "Ancient Dragon",
+  "description": "A broad, dark voice with grit and a cavernous tail.",
+  "tags": ["dragon", "deep", "cavernous"],
+  "effects": {
+    "pitch_semitones": -6.0,
+    "formant_semitones": -2.0,
+    "high_pass_hz": 40.0,
+    "low_pass_hz": 5700.0,
+    "body_hz": 145.0,
+    "body_db": 4.0,
+    "presence_hz": 1800.0,
+    "presence_db": -1.0,
+    "drive": 0.28,
+    "compression": 0.45,
+    "breath": 0.0,
+    "modulation_hz": 30.0,
+    "modulation_mix": 0.0,
+    "echo_mix": 0.14,
+    "echo_delay_ms": 225.0,
+    "gain_db": 2.0
+  }
+}

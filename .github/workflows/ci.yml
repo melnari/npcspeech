@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - name: Install Linux dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential pkg-config clang libclang-dev libpipewire-0.3-dev libspa-0.2-dev
+      - name: Check Rust formatting
+        run: cargo fmt --manifest-path engine/Cargo.toml --all -- --check
+      - name: Test Rust engine
+        run: cargo test --locked --manifest-path engine/Cargo.toml
+      - name: Lint Rust engine
+        run: cargo clippy --locked --manifest-path engine/Cargo.toml --all-targets -- -D warnings
+      - name: Test Python preset and control code
+        run: PYTHONPATH=ui python3 -m unittest discover -s tests -v
+      - name: Compile Python files
+        run: python3 -m compileall -q ui
