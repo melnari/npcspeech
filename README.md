@@ -45,21 +45,6 @@ The engine can also run without the UI:
 
 In a separate terminal, use `./scripts/npcspeechctl status`, `./scripts/npcspeechctl devices`, `./scripts/npcspeechctl select orc`, or `./scripts/npcspeechctl original`. Use `./scripts/npcspeechctl shutdown` to stop the engine.
 
-### Audacity Snap cannot see the microphone
-
-If Audacity was installed as a Snap, check `snap connections audacity`. Its `audio-record` plug must connect to `:audio-record`; a `-` in the Slot column means recording access is disabled. Grant access with `sudo snap connect audacity:audio-record`, then restart Audacity and use **Transport → Rescan Audio Devices**.
-
-If the input list shows only physical microphones after connecting the Snap's `alsa` plug, its launcher may be choosing direct ALSA. Force the launcher's built-in PulseAudio route (served by PipeWire on Ubuntu), then restart Audacity:
-
-```sh
-mkdir -p "$HOME/snap/audacity/common"
-printf 'ALWAYS_USE_PULSEAUDIO=1\n' > "$HOME/snap/audacity/common/Always use PulseAudio"
-```
-
-Audacity may still label the host **ALSA**: the `default` ALSA device is then routed through PulseAudio. Set **Recording Device** to **default** and choose **NPCSpeech Microphone** as the Ubuntu system input. Do **not** choose **sysdefault** or an `hw:` device: those can record a physical sound card directly, bypassing NPCSpeech. The virtual source need not appear by name in Audacity's own device list. Confirm the engine is running with `./scripts/npcspeechctl status` and inspect `wpctl status` for the default source.
-
-If Audacity records the unchanged microphone, check two separate switches: `wpctl status` must mark **NPCSpeech Microphone** as the default source (`*`) when Audacity uses `pulse`/`default`, and `./scripts/npcspeechctl status` must show a non-null `selected_id` with `bypass: false`. Selecting a voice in NPCSpeech does not automatically change Ubuntu's default input. A new preset activation needs about 43 ms for the pitch shifter to warm up; the dry signal continues during that interval.
-
 ### Tuning voice quality
 
 Start with a clean physical microphone and compare the same spoken phrase in **Original** and a preset. Pitch changes the fundamental voice register; formants and the two resonance bands change vocal color. Large simultaneous pitch and formant shifts can sound metallic or cartoonish. The retuned Goblin example uses a moderate pitch lift, a small formant lift, a gentle presence boost, and almost no drive. Increase one control at a time in the preset editor and use **Preview on virtual microphone** to audition it before saving. Drive now keeps quiet-signal gain near unity, and compression follows the speech envelope to avoid abrupt changes.
